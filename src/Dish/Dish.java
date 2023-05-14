@@ -1,7 +1,9 @@
 package Dish;
 
+import java.util.List;
+
 public interface Dish {
-    String getName();
+    List<String> getName();
     String getDescription();
     String getValue();
 }

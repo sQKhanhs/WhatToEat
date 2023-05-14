@@ -28,6 +28,8 @@ public class User {
     public void dishAddToList() {
         dishes.add(new ComTam());
         dishes.add(new BunBo());
+        dishes.add(new Pho());
+        dishes.add(new BanhXeo());
     }
 
     public void setAccess(boolean access) {
@@ -96,13 +98,14 @@ public class User {
         }
     }
 
-    public void whatToEat() {
+    public String whatToEat() {
         dishAddToList();
         Random random = new Random();
         int randomNumber = random.nextInt(dishes.size());
         Dish dish = dishes.get(randomNumber);
-        System.out.println(dish.getName());
+        System.out.println(dish.getName().get(0));
         System.out.println(dish.getDescription());
         System.out.println(dish.getValue());
+        return dish.getName().get(0);
     }
 }

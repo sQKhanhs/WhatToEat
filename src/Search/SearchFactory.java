@@ -12,6 +12,8 @@ public class SearchFactory {
                 return new SearchByLocationHN();
             case "price":
                 return new SearchByPrice();
+            case "rating":
+                return new SearchByRating();
             default:
                 throw new IllegalArgumentException("This search type is unsupported");
         }

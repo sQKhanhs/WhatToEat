@@ -16,7 +16,6 @@ public class SearchByPrice implements Search {
             File file = new File("C:\\Users\\Public\\Documents\\Restaurant\\");
             String[] fileList = file.list();
             for (String restaurantUser : fileList) {
-                String[] restaurantPrice = new String[3];
                 ArrayList<Integer> priceCompare = new ArrayList<>();
                 BufferedReader bufferedReader = new BufferedReader(new FileReader("C:\\Users\\Public\\Documents\\Restaurant\\"
                         + restaurantUser + "\\" + "information.txt"));
@@ -24,16 +23,21 @@ public class SearchByPrice implements Search {
                 String[] dishNameRead = line.split(":");
                 bufferedReader.readLine();
                 if (dishNameRead[1].equalsIgnoreCase(" " + dishName)) {
+                    File menuFile = new File("C:\\Users\\Public\\Documents\\Restaurant\\"
+                            + restaurantUser + "\\" + "menu.txt");
+                    if(!menuFile.exists()){
+                        continue;
+                    }
+                    String[] restaurantPrice = new String[3];
                     String restaurantName = bufferedReader.readLine();
                     restaurantPrice[1] = restaurantName;
                     String restaurantAddress = bufferedReader.readLine();
                     restaurantPrice[2] = restaurantAddress;
-                    String oderLine;
-                    bufferedReader = new BufferedReader(new FileReader("C:\\Users\\Public\\Documents\\Restaurant\\"
-                            + restaurantUser + "\\" + "menu.txt"));
-                    while ((oderLine = bufferedReader.readLine()) != null) {
-                        if (oderLine.endsWith("VND")) {
-                            String[] price = oderLine.split(" ");
+                    String menuLine;
+                    bufferedReader = new BufferedReader(new FileReader(menuFile));
+                    while ((menuLine = bufferedReader.readLine()) != null) {
+                        if (menuLine.endsWith("VND")) {
+                            String[] price = menuLine.split(" ");
                             int priceNumber = Integer.parseInt(price[0]);
                             priceCompare.add(priceNumber);
                         }

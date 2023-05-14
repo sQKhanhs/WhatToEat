@@ -1,3 +1,5 @@
+package Test;
+
 import java.io.File;
 import java.util.Scanner;
 class CreateFolderHierarchy {

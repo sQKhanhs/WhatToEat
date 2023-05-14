@@ -11,8 +11,12 @@ public class SearchByLocationHCM implements Search {
             File file = new File("C:\\Users\\Public\\Documents\\Restaurant\\");
             String[] fileList = file.list();
             for (String restaurantUser : fileList) {
-                FileReader reader = new FileReader("C:\\Users\\Public\\Documents\\Restaurant\\"
+                File informationFile = new File("C:\\Users\\Public\\Documents\\Restaurant\\"
                         + restaurantUser + "\\" + "information.txt");
+                if(!informationFile.exists()){
+                    continue;
+                }
+                FileReader reader = new FileReader(informationFile);
                 BufferedReader bufferedReader = new BufferedReader(reader);
                 String line = bufferedReader.readLine();
                 bufferedReader.mark(0);

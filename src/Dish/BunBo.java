@@ -1,9 +1,14 @@
 package Dish;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class BunBo implements Dish {
     @Override
-    public String getName() {
-        return "Bun Bo";
+    public List<String> getName() {
+        String name = "Bun Bo";
+        String name2 = "Bun Bo Hue";
+        return Arrays.asList(name, name2);
     }
 
     @Override
@@ -14,6 +19,6 @@ public class BunBo implements Dish {
 
     @Override
     public String getValue() {
-        return "Calories: 534";
+        return "Calories: 534 kcal";
     }
 }
