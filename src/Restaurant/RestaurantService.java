@@ -16,7 +16,7 @@ public class RestaurantService {
             choice = logOut(choice, input);
             mainMenuAccess(choice, input);
         } catch (InputMismatchException e) {
-            System.out.println("Please enter number to proceed!");
+            System.out.println("Please enter the correct input to proceed!");
         }
     }
 
@@ -61,7 +61,7 @@ public class RestaurantService {
     }
 
     private static int restaurantReview(int choice, Scanner input) {
-        while (choice != 0){
+        while (choice != 0) {
             System.out.println("1. View review and rating");
             System.out.println("2. Reply user review");
             System.out.println("3. Update reply");
@@ -69,7 +69,7 @@ public class RestaurantService {
             System.out.println("5. Log out");
             System.out.println("0. Exit");
             choice = input.nextInt();
-            switch (choice){
+            switch (choice) {
                 case 0:
                     System.exit(0);
                 case 1:
@@ -104,7 +104,7 @@ public class RestaurantService {
         System.out.println("Enter your reply(maximum chars 250):");
         String reply = text.nextLine();
         reply = replyCheck(text, reply);
-        try{
+        try {
             File informationFile = new File("C:\\Users\\Public\\Documents\\Restaurant\\"
                     + Restaurant.getInstance().getUserName() + "\\" + "information.txt");
             BufferedReader nameReader = new BufferedReader(new FileReader(informationFile));
@@ -119,12 +119,12 @@ public class RestaurantService {
             BufferedReader reader = new BufferedReader(new FileReader(reviewFile));
             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
 
-            while ((line = reader.readLine()) != null){
-                if(!(line.endsWith(userName + ":") && line.startsWith(" " + restaurantName))){
+            while ((line = reader.readLine()) != null) {
+                if (!(line.endsWith(userName + ":") && line.startsWith(" " + restaurantName))) {
                     writer.write(line + "\n");
-                } else{
+                } else {
                     reader.readLine();
-                    writer.write(" " + restaurantName + " reply to " + userName +":" + "\n");
+                    writer.write(" " + restaurantName + " reply to " + userName + ":" + "\n");
                     writer.write(" " + reply + "\n");
                 }
             }
@@ -135,8 +135,7 @@ public class RestaurantService {
             Path newDirectory = Paths.get("C:\\Users\\Public\\Documents\\Restaurant\\"
                     + Restaurant.getInstance().getUserName());
             Files.move(source, newDirectory.resolve(source.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error found! System restart....");
         }
     }
@@ -150,7 +149,7 @@ public class RestaurantService {
         System.out.println("Enter your reply(maximum chars 250):");
         String reply = text.nextLine();
         reply = replyCheck(text, reply);
-        try{
+        try {
             File informationFile = new File("C:\\Users\\Public\\Documents\\Restaurant\\"
                     + Restaurant.getInstance().getUserName() + "\\" + "information.txt");
             BufferedReader nameReader = new BufferedReader(new FileReader(informationFile));
@@ -165,14 +164,14 @@ public class RestaurantService {
             BufferedReader reader = new BufferedReader(new FileReader(reviewFile));
             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
 
-            while ((line = reader.readLine()) != null){
-                if(!line.endsWith(userName)){
+            while ((line = reader.readLine()) != null) {
+                if (!line.endsWith(userName)) {
                     writer.write(line + "\n");
-                } else{
+                } else {
                     writer.write(line + "\n");
                     writer.write(reader.readLine() + "\n");
                     writer.write(reader.readLine() + "\n");
-                    writer.write(" " + restaurantName + " reply to " + userName +":" + "\n");
+                    writer.write(" " + restaurantName + " reply to " + userName + ":" + "\n");
                     writer.write(" " + reply + "\n");
                 }
             }
@@ -183,8 +182,7 @@ public class RestaurantService {
             Path newDirectory = Paths.get("C:\\Users\\Public\\Documents\\Restaurant\\"
                     + Restaurant.getInstance().getUserName());
             Files.move(source, newDirectory.resolve(source.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error found! System restart....");
         }
     }
@@ -216,7 +214,7 @@ public class RestaurantService {
                         break;
                     }
                 }
-                if(!userFound){
+                if (!userFound) {
                     System.out.println("No user found! Please enter again:");
                     userName = text.nextLine();
                     checkUserReader = new BufferedReader(new FileReader(reviewFile));
@@ -225,15 +223,14 @@ public class RestaurantService {
                     break;
                 }
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error found! System restart....");
         }
         return userName;
     }
 
     private static void viewReview() {
-        try{
+        try {
             File reviewFile = new File("C:\\Users\\Public\\Documents\\Restaurant\\"
                     + Restaurant.getInstance().getUserName() + "\\" + "review.txt");
             File ratingFile = new File("C:\\Users\\Public\\Documents\\Restaurant\\"
@@ -244,25 +241,24 @@ public class RestaurantService {
             System.out.println("Rating: " + reader.readLine());
             reader = new BufferedReader(new FileReader(reviewFile));
             String line;
-            while ((line = reader.readLine()) != null){
+            while ((line = reader.readLine()) != null) {
                 System.out.println(line);
             }
             reader.close();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error found! System restart....");
         }
     }
 
     private static int orderLink(int choice, Scanner input) {
-        while (choice != 0){
+        while (choice != 0) {
             System.out.println("1. View order link");
             System.out.println("2. Update order link");
             System.out.println("3. Main menu");
             System.out.println("4. Log out");
             System.out.println("0. Exit");
             choice = input.nextInt();
-            switch (choice){
+            switch (choice) {
                 case 0:
                     System.exit(0);
                 case 1:
@@ -293,14 +289,13 @@ public class RestaurantService {
             File file = new File("C:\\Users\\Public\\Documents\\Restaurant\\"
                     + Restaurant.getInstance().getUserName() + "\\"
                     + "order.txt");
-            if(!file.exists()){
+            if (!file.exists()) {
                 file.createNewFile();
             }
             BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
             bufferedWriter.write(link);
             bufferedWriter.close();
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error found! System restart....");
         }
     }
@@ -313,8 +308,7 @@ public class RestaurantService {
             BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
             System.out.println("Order link: ");
             System.out.println(bufferedReader.readLine());
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error found! System restart....");
         }
     }
@@ -341,7 +335,7 @@ public class RestaurantService {
                     break;
                 case 4:
                     logOut(choice, input);
-                    mainMenuAccess(choice,input);
+                    mainMenuAccess(choice, input);
                     break;
                 default:
                     System.out.println("Please choose again!");
@@ -394,7 +388,7 @@ public class RestaurantService {
                     break;
                 case 5:
                     logOut(choice, input);
-                    mainMenuAccess(choice,input);
+                    mainMenuAccess(choice, input);
                     break;
                 default:
                     System.out.println("Please choose again!");

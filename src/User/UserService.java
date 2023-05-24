@@ -20,7 +20,7 @@ public class UserService {
             choice = logOut(choice, input);
             mainMenuAccess(choice, input);
         } catch (InputMismatchException e) {
-            System.out.println("Please enter number to proceed!");
+            System.out.println("Please enter the correct input to proceed!");
         }
     }
 
@@ -44,10 +44,10 @@ public class UserService {
                 case 1:
                     String name = dishLookUp();
                     boolean dishFound = false;
-                    if(!name.equalsIgnoreCase("blank")){
+                    if (!name.equalsIgnoreCase("blank")) {
                         dishFound = true;
                     }
-                    while (!dishFound){
+                    while (!dishFound) {
                         mainMenu(choice, input);
                     }
                     choice = searchMenu(choice, input, name);
@@ -166,7 +166,7 @@ public class UserService {
     }
 
     private static void viewMenu() {
-        try{
+        try {
             Scanner text = new Scanner(System.in);
             System.out.println("Enter restaurant name to view:");
             String restaurantName = text.nextLine();
@@ -183,7 +183,7 @@ public class UserService {
                         found = true;
                         File menuFile = new File("C:\\Users\\Public\\Documents\\Restaurant\\"
                                 + restaurantUser + "\\" + "menu.txt");
-                        if(!menuFile.exists()){
+                        if (!menuFile.exists()) {
                             System.out.println("No menu found!");
                         } else {
                             reader = new BufferedReader(new FileReader(menuFile));
@@ -194,18 +194,17 @@ public class UserService {
                         }
                     }
                 }
-                if(found){
+                if (found) {
                     break;
                 }
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error found! System restart....");
         }
     }
 
     private static void viewReviewRating() {
-        try{
+        try {
             Scanner text = new Scanner(System.in);
             System.out.println("Enter restaurant name to view:");
             String restaurantName = text.nextLine();
@@ -229,15 +228,14 @@ public class UserService {
                         reader.readLine();
                         System.out.println("Restaurant rating: " + reader.readLine());
                         reader = new BufferedReader(new FileReader(reviewFile));
-                        while ((line = reader.readLine()) != null){
+                        while ((line = reader.readLine()) != null) {
                             System.out.println(line);
                         }
                         break;
                     }
                 }
             }
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             System.out.println("Error found! System restart....");
         }
     }
@@ -251,9 +249,9 @@ public class UserService {
         review = reviewCheck(text, review);
         System.out.println("Enter your rating(0 to 5):");
         String rating = text.nextLine();
-        if(Integer.parseInt(rating) > 5){
+        if (Integer.parseInt(rating) > 5) {
             rating = "5";
-        } else if(Integer.parseInt(rating) < 0){
+        } else if (Integer.parseInt(rating) < 0) {
             rating = "0";
         }
 
@@ -489,7 +487,7 @@ public class UserService {
         User.getInstance().dishAddToList();
         for (int index = 0; index < User.getInstance().getDishes().size(); index++) {
             Dish dish = User.getInstance().getDishes().get(index);
-            for(int index2 = 0; index2 < dish.getName().size(); index2++) {
+            for (int index2 = 0; index2 < dish.getName().size(); index2++) {
                 if (name.equalsIgnoreCase(dish.getName().get(index2))) {
                     System.out.println(dish.getDescription());
                     System.out.println(dish.getValue());
@@ -498,11 +496,11 @@ public class UserService {
                     break;
                 }
             }
-            if(dishFound){
+            if (dishFound) {
                 break;
             }
         }
-        if(!dishFound){
+        if (!dishFound) {
             System.out.println("No dish found!");
             name = "blank";
         }

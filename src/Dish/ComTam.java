@@ -8,7 +8,8 @@ public class ComTam implements Dish{
     public List<String> getName() {
         String name = "Com Tam";
         String name2 = "Com Suon";
-        return Arrays.asList(name, name2);
+        String name3 = "Com Suon Nuong";
+        return Arrays.asList(name, name2, name3);
     }
 
     @Override
